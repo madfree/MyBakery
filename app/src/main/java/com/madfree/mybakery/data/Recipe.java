@@ -1,25 +1,39 @@
 package com.madfree.mybakery.data;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "recipes")
 public class Recipe {
 
-    @SerializedName("recipeId")
-    private Integer recipeId;
-    @SerializedName("name")
-    private String name;
+    @PrimaryKey
+    @SerializedName("id")
+    private int recipeId;
 
-    public Recipe(Integer recipeId, String name) {
+    @SerializedName("name")
+    private String recipeName;
+
+    public Recipe(int recipeId, String recipeName) {
         this.recipeId = recipeId;
-        this.name = name;
+        this.recipeName = recipeName;
     }
 
-    public Integer getRecipeId() {
+    public int getRecipeId() {
         return recipeId;
     }
 
-    public String getName() {
-        return name;
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
 }
