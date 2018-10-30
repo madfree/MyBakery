@@ -1,5 +1,6 @@
 package com.madfree.mybakery.data;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface RecipeDao {
 
     @Query("SELECT * FROM recipes ORDER BY recipeId")
-    List<Recipe> loadAllRecipes();
+    LiveData<List<Recipe>> loadAllRecipes();
 
     @Insert
     void insertRecipe(Recipe recipe);
