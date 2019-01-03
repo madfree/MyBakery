@@ -1,4 +1,4 @@
-package com.madfree.mybakery.adapter;
+package com.madfree.mybakery.view.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.madfree.mybakery.R;
-import com.madfree.mybakery.data.Recipe;
+import com.madfree.mybakery.service.model.Recipe;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private List<Recipe> mRecipeList;
 
     public RecipeAdapter(Context context, ItemClickListener listener) {
-        mContext = context;
-        mListener = listener;
+        this.mContext = context;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -34,9 +34,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder recipeViewHolder, int position) {
-        Recipe recipe = mRecipeList.get(position);
-        String recipeName = recipe.getRecipeName();
-        recipeViewHolder.recipeNameView.setText(recipeName);
+        recipeViewHolder.recipeNameView.setText(mRecipeList.get(position).getName());
     }
 
     @Override
@@ -71,7 +69,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         @Override
         public void onClick(View view) {
-            int elementId = mRecipeList.get(getAdapterPosition()).getRecipeId();
+            int elementId = mRecipeList.get(getAdapterPosition()).getId();
             mListener.onItemClickListener(elementId);
         }
     }
