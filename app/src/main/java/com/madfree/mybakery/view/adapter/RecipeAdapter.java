@@ -69,7 +69,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
         @Override
         public void onClick(View view) {
-            int elementId = mRecipeList.get(getAdapterPosition()).getId();
+            int elementId = mRecipeList.get(getAdapterPosition()).getId()-1;
             mListener.onItemClickListener(elementId);
         }
     }

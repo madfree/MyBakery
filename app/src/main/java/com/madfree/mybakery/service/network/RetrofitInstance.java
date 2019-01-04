@@ -6,8 +6,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.madfree.mybakery.service.data.AppDatabase;
+import com.madfree.mybakery.service.data.IngredientDao;
 import com.madfree.mybakery.service.data.RecipeDao;
+import com.madfree.mybakery.service.data.StepDao;
+import com.madfree.mybakery.service.model.Ingredient;
 import com.madfree.mybakery.service.model.Recipe;
+import com.madfree.mybakery.service.model.Step;
 
 import java.util.List;
 
@@ -23,6 +27,8 @@ public class RetrofitInstance {
     private static final String BASE_URL = "https://d17h27t6h515a5.cloudfront.net";
     private static final String LOG_TAG = RetrofitInstance.class.getSimpleName();
     private RecipeDao recipeDao;
+    private IngredientDao ingredientDao;
+    private StepDao stepDao;
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
@@ -40,6 +46,8 @@ public class RetrofitInstance {
         final MutableLiveData<List<Recipe>> data = new MutableLiveData<>();
         AppDatabase db = AppDatabase.getsInstance(context);
         recipeDao = db.recipeDao();
+        ingredientDao = db.ingredientDao();
+        stepDao = db.stepDao();
 
         final RecipeService recipeService = RetrofitInstance.getRetrofitInstance().create
                 (RecipeService.class);
@@ -59,8 +67,29 @@ public class RetrofitInstance {
                     Recipe netRecipe = new Recipe(recipeId, recipeName);
                     recipeDao.insertRecipe(netRecipe);
                     Log.d(LOG_TAG, "Inserted recipe: " + recipeName);
-                }
 
+                    List<Ingredient> ingredientList = recipesDataList.get(i).getIngredients();
+                    for (int j=0; j < ingredientList.size(); j++) {
+                        String ingredientName = ingredientList.get(j).getIngredient();
+                        String ingredientMeasure = ingredientList.get(j).getMeasure();
+                        Double ingredientQuantity = ingredientList.get(j).getQuantity();
+                        Ingredient ingredient = new Ingredient(ingredientName, ingredientMeasure, ingredientQuantity, recipeId);
+                        ingredientDao.insertIngredient(ingredient);
+                        Log.d(LOG_TAG, "Inserted ingredient: " + ingredientName);
+
+                        List<Step> stepList = recipesDataList.get(i).getSteps();
+                        for (int k=0; k < stepList.size(); k++) {
+                            int stepId = stepList.get(k).getId();
+                            String stepShortDesc = stepList.get(k).getShortDescription();
+                            String stepDesc = stepList.get(k).getDescription();
+                            String stepThumbNailUrl = stepList.get(k).getThumbnailURL();
+                            String stepVideoUrl = stepList.get(k).getVideoURL();
+                            Step step = new Step(stepId, stepShortDesc, stepDesc, stepThumbNailUrl, stepVideoUrl);
+                            stepDao.insertStep(step);
+                            Log.d(LOG_TAG, "Inserted step: " + stepShortDesc);
+                        }
+                    }
+                }
             }
 
             @Override

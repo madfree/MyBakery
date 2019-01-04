@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements  RecipeAdapter.It
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recipeRecyclerView);
+        mRecyclerView = findViewById(R.id.recipeRecyclerView);
         mAdapter = new RecipeAdapter(this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -46,15 +46,12 @@ public class MainActivity extends AppCompatActivity implements  RecipeAdapter.It
             public void onChanged(@Nullable List<Recipe> recipes) {
                 Log.d(LOG_TAG, "Updating list of recipes from LiveData in ViewModel with " + recipes.size() + " recipes");
                 mAdapter.setRecipes(recipes);
-
-
             }
         });
     }
 
     @Override
     public void onItemClickListener(int itemId) {
-        //AppDatabase db = AppDatabase.getsInstance(getApplicationContext());
         int recipeId = mAdapter.getRecipeList().get(itemId).getId();
         Toast.makeText(MainActivity.this, "This recipe has the ID " + recipeId, Toast.LENGTH_SHORT).show();
     }

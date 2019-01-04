@@ -1,15 +1,22 @@
 package com.madfree.mybakery.service.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Entity
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(foreignKeys = @ForeignKey(entity = Recipe.class,
+        parentColumns = "id",
+        childColumns = "recipeId",
+        onDelete = CASCADE))
 public class Step {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private Integer stepId;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -25,6 +32,16 @@ public class Step {
     @SerializedName("thumbnailURL")
     @Expose
     private String thumbnailURL;
+    @SerializedName("recipeId")
+    private Integer recipeId;
+
+    public Integer getStepId() {
+        return stepId;
+    }
+
+    public void setStepId(Integer stepId) {
+        this.stepId = stepId;
+    }
 
     public Integer getId() {
         return id;
@@ -63,6 +80,22 @@ public class Step {
     }
 
     public void setThumbnailURL(String thumbnailURL) {
+        this.thumbnailURL = thumbnailURL;
+    }
+
+    public Integer getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(Integer recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    public Step(int id, String shortDescription, String description, String videoURL, String thumbnailURL) {
+        this.id = id;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.videoURL = videoURL;
         this.thumbnailURL = thumbnailURL;
     }
 }
