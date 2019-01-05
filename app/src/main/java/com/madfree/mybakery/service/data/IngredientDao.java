@@ -19,8 +19,8 @@ public interface IngredientDao {
     @Query("SELECT * FROM Ingredient ORDER BY ingredient")
     LiveData<List<Ingredient>> loadAllIngredients();
 
-    //@Query("SELECT * FROM NetIngredient WHERE recipeId=:recipeId")
-    //int loadIngredientsForRecipe(int recipeId);
+    @Query("SELECT * FROM Ingredient WHERE recipeId=:recipeId")
+    LiveData<List<Ingredient>> loadIngredientsForRecipe(int recipeId);
 
     //@Query("SELECT count(*) FROM NetIngredient WHERE recipeId=:recipeId")
     //int getIngredientCountForRecipe(int recipeId);

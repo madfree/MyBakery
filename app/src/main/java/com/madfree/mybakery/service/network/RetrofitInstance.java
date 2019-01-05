@@ -30,7 +30,7 @@ public class RetrofitInstance {
     private IngredientDao ingredientDao;
     private StepDao stepDao;
 
-    public static Retrofit getRetrofitInstance() {
+    private static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

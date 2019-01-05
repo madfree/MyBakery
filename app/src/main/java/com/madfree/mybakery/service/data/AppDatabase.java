@@ -11,7 +11,7 @@ import com.madfree.mybakery.service.model.Recipe;
 import com.madfree.mybakery.service.model.Step;
 
 
-@Database(entities = {Recipe.class, Ingredient.class, Step.class}, version = 5, exportSchema = false)
+@Database(entities = {Recipe.class, Ingredient.class, Step.class}, version = 6, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = AppDatabase.class.getSimpleName();

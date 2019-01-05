@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
-    private Context mContext;
+    private final Context mContext;
     final private ItemClickListener mListener;
     private List<Recipe> mRecipeList;
 
@@ -61,7 +61,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView recipeNameView;
 
-        public RecipeViewHolder(@NonNull View itemView) {
+        RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             recipeNameView = itemView.findViewById(R.id.recipeNameTv);
             itemView.setOnClickListener(this);

@@ -15,7 +15,6 @@ public class RecipeRepository {
 
     private static final String LOG_TAG = RecipeRepository.class.getSimpleName();
     private LiveData<List<Recipe>> mRecipesList;
-    private final RecipeDao recipeDao;
 
     public LiveData<List<Recipe>> getmRecipesList() {
         return mRecipesList;
@@ -24,10 +23,10 @@ public class RecipeRepository {
     public RecipeRepository(Context context) {
 
         AppDatabase db = AppDatabase.getsInstance(context);
-        recipeDao = db.recipeDao();
+        RecipeDao recipeDao = db.recipeDao();
 
         //for testing purposes only - to delete before productive use
-        db.recipeDao().deleteAllRecipes();
+        //db.recipeDao().deleteAllRecipes();
 
         boolean recipesExist = recipeDao.count() != 0;
         if (!recipesExist) {

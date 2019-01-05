@@ -12,13 +12,11 @@ import java.util.List;
 
 public class RecipeListViewModel extends AndroidViewModel {
 
-    private RecipeRepository mRepository;
-
     private final LiveData<List<Recipe>> recipesListObservable;
 
     public RecipeListViewModel(@NonNull Application application) {
         super(application);
-        mRepository = new RecipeRepository(application);
+        RecipeRepository mRepository = new RecipeRepository(application);
         recipesListObservable = mRepository.getmRecipesList();
     }
 
