@@ -61,6 +61,7 @@ public class RetrofitInstance {
                 Integer statusCode = response.code();
                 Log.d(LOG_TAG, "Status Code: " + statusCode.toString());
                 List<Recipe> recipesDataList = response.body();
+
                 for (int i=0; i < recipesDataList.size(); i++) {
                     String recipeName = recipesDataList.get(i).getName();
                     int recipeId = recipesDataList.get(i).getId();
@@ -76,18 +77,18 @@ public class RetrofitInstance {
                         Ingredient ingredient = new Ingredient(ingredientName, ingredientMeasure, ingredientQuantity, recipeId);
                         ingredientDao.insertIngredient(ingredient);
                         Log.d(LOG_TAG, "Inserted ingredient: " + ingredientName);
+                    }
 
-                        List<Step> stepList = recipesDataList.get(i).getSteps();
-                        for (int k=0; k < stepList.size(); k++) {
-                            int stepId = stepList.get(k).getId();
-                            String stepShortDesc = stepList.get(k).getShortDescription();
-                            String stepDesc = stepList.get(k).getDescription();
-                            String stepThumbNailUrl = stepList.get(k).getThumbnailURL();
-                            String stepVideoUrl = stepList.get(k).getVideoURL();
-                            Step step = new Step(stepId, stepShortDesc, stepDesc, stepThumbNailUrl, stepVideoUrl);
-                            stepDao.insertStep(step);
-                            Log.d(LOG_TAG, "Inserted step: " + stepShortDesc);
-                        }
+                    List<Step> stepList = recipesDataList.get(i).getSteps();
+                    for (int k=0; k < stepList.size(); k++) {
+                        int stepId = stepList.get(k).getId();
+                        String stepShortDesc = stepList.get(k).getShortDescription();
+                        String stepDesc = stepList.get(k).getDescription();
+                        String stepThumbNailUrl = stepList.get(k).getThumbnailURL();
+                        String stepVideoUrl = stepList.get(k).getVideoURL();
+                        Step step = new Step(stepId, stepShortDesc, stepDesc, stepThumbNailUrl, stepVideoUrl, recipeId);
+                        stepDao.insertStep(step);
+                        Log.d(LOG_TAG, "Inserted step: " + stepShortDesc);
                     }
                 }
             }

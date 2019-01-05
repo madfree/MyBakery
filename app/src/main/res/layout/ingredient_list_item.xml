@@ -10,10 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
-        android:paddingTop="1dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="1dp"
-        android:text="5"
+        android:paddingStart="5dp"
+        android:textSize="10sp"
         />
 
     <TextView
@@ -21,10 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
-        android:paddingTop="1dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="1dp"
-        android:text="kg"
+        android:paddingStart="5dp"
+        android:textSize="10sp"
         />
 
     <TextView
@@ -32,10 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
-        android:paddingTop="1dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="1dp"
-        android:text="Nutella"
+        android:paddingStart="5dp"
+        android:textSize="10sp"
         />
 
 </LinearLayout>

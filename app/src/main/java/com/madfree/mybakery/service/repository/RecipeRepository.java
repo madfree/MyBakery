@@ -23,11 +23,13 @@ public class RecipeRepository {
     public RecipeRepository(Context context) {
 
         AppDatabase db = AppDatabase.getsInstance(context);
-        RecipeDao recipeDao = db.recipeDao();
 
         //for testing purposes only - to delete before productive use
         //db.recipeDao().deleteAllRecipes();
+        //db.ingredientDao().deleteAllIngredients();
+        //db.stepDao().deleteAllSteps();
 
+        RecipeDao recipeDao = db.recipeDao();
         boolean recipesExist = recipeDao.count() != 0;
         if (!recipesExist) {
             mRecipesList = new RetrofitInstance().fetchRecipeData(context);

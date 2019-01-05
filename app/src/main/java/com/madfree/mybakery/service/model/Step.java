@@ -91,11 +91,12 @@ public class Step {
         this.recipeId = recipeId;
     }
 
-    public Step(int id, String shortDescription, String description, String videoURL, String thumbnailURL) {
+    public Step(Integer id, String shortDescription, String description, String videoURL, String thumbnailURL, Integer recipeId) {
         this.id = id;
         this.shortDescription = shortDescription;
         this.description = description;
         this.videoURL = videoURL;
         this.thumbnailURL = thumbnailURL;
+        this.recipeId =  recipeId;
     }
 }

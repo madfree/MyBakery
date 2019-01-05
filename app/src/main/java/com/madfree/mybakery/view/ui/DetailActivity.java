@@ -24,10 +24,15 @@ public class DetailActivity extends AppCompatActivity {
 
         IngredientsFragment ingredientsFragment = new IngredientsFragment();
         ingredientsFragment.setRecipeId(recipeId);
+
+        StepsFragment stepsFragment = new StepsFragment();
+        stepsFragment.setRecipeId(recipeId);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
                 .add(R.id.ingredients_frame, ingredientsFragment)
+                .add(R.id.steps_frame, stepsFragment)
                 .commit();
     }
 }
