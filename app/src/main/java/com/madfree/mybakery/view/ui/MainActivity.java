@@ -18,7 +18,7 @@ import com.madfree.mybakery.viewmodel.RecipeListViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements  RecipeAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity implements RecipeAdapter.ItemClickListener {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements  RecipeAdapter.It
     @Override
     public void onItemClickListener(int itemId) {
         int recipeId = mAdapter.getRecipeList().get(itemId).getId();
-        //Toast.makeText(MainActivity.this, "This recipe has the ID " + recipeId, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("recipeId", recipeId);
         Log.d(LOG_TAG, "This is the recipeId set for the intent: " + recipeId);

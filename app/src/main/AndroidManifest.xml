@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.ui.DetailActivity" />
+        <activity android:name=".view.ui.SingleStepActivity"
+            android:configChanges="orientation|screenSize|layoutDirection" />
     </application>
 
 </manifest>

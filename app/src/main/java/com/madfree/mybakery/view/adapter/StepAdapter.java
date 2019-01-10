@@ -16,12 +16,14 @@ import java.util.List;
 
 public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder> {
 
-    public static final String LOG_TAG = StepAdapter.class.getSimpleName();
+    private static final String LOG_TAG = StepAdapter.class.getSimpleName();
+    final private RecyclerViewClickListener mRecyclerViewClickListener;
 
     private List<Step> mStepList;
-    private Context context;
+    private int mStepId;
 
-    public StepAdapter() {
+    public StepAdapter(Context context, RecyclerViewClickListener listener) {
+        this.mRecyclerViewClickListener = listener;
         Log.d(LOG_TAG, "Setting up StepAdapter");
     }
 
@@ -58,12 +60,20 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
         notifyDataSetChanged();
     }
 
-    class StepViewHolder extends RecyclerView.ViewHolder {
+    class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView stepName;
 
         StepViewHolder(@NonNull View itemView) {
             super(itemView);
             stepName = itemView.findViewById(R.id.stepNameTv);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int elementId = mStepList.get(getAdapterPosition()).getId();
+            mRecyclerViewClickListener.recyclerViewListClicked(elementId);
+            Log.d(LOG_TAG, "This is the stepId set for the intent: " + elementId);
         }
     }
 }

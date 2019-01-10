@@ -18,7 +18,7 @@ public class IngredientListViewModel extends AndroidViewModel implements ViewMod
     private static final String LOG_TAG = IngredientListViewModel.class.getSimpleName();
 
     private final Application mApplication;
-    private int mRecipeId;
+    private final int mRecipeId;
 
     private final LiveData<List<Ingredient>> ingredientListObservable;
 

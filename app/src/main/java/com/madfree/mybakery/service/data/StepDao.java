@@ -20,6 +20,15 @@ public interface StepDao {
     @Query("SELECT * FROM Step WHERE recipeId=:recipeId")
     LiveData<List<Step>> loadStepsForRecipe(int recipeId);
 
+    @Query("SELECT stepId FROM Step WHERE recipeId=:recipeId AND id=:id")
+    Integer loadStepWithIds(int recipeId, int id);
+
+    @Query("SELECT * FROM Step WHERE recipeId=:recipeId AND id=:id")
+    LiveData<List<Step>> loadStepWithRecipeAndStepId(int recipeId, int id);
+
+    @Query("SELECT * FROM Step WHERE stepId=:stepId")
+    LiveData<Step> loadSingleStep(int stepId);
+
     @Query("SELECT count(*) FROM Step")
     int count();
 

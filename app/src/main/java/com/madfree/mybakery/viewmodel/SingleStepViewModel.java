@@ -11,33 +11,31 @@ import android.util.Log;
 import com.madfree.mybakery.service.data.AppDatabase;
 import com.madfree.mybakery.service.model.Step;
 
-import java.util.List;
+public class SingleStepViewModel extends AndroidViewModel implements ViewModelProvider.Factory{
 
-public class StepListViewModel extends AndroidViewModel implements ViewModelProvider.Factory{
-
-    private static final String LOG_TAG = StepListViewModel.class.getSimpleName();
+    private static final String LOG_TAG = SingleStepViewModel.class.getSimpleName();
 
     private final Application mApplication;
-    private final int mRecipeId;
+    private final int mStepUID;
 
-    private final LiveData<List<Step>> stepListObservable;
+    private final LiveData<Step> singleStepObservable;
 
-    public StepListViewModel(@NonNull Application application, int recipeId) {
+    public SingleStepViewModel(@NonNull Application application, int stepUID) {
         super(application);
         this.mApplication = application;
-        this.mRecipeId = recipeId;
-        Log.d(LOG_TAG, "Received recipeId " + recipeId);
+        this.mStepUID = stepUID;
+        Log.d(LOG_TAG, "Received stepUID " + stepUID);
         AppDatabase db = AppDatabase.getsInstance(application);
-        stepListObservable = db.stepDao().loadStepsForRecipe(recipeId);
+        singleStepObservable = db.stepDao().loadSingleStep(mStepUID);
     }
 
-    public LiveData<List<Step>> getStepListObservable() {
-        return stepListObservable;
+    public LiveData<Step> getStepListObservable() {
+        return singleStepObservable;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new StepListViewModel(mApplication, mRecipeId);
+        return (T) new SingleStepViewModel(mApplication, mStepUID);
     }
 }

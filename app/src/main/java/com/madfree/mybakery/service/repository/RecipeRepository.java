@@ -25,9 +25,9 @@ public class RecipeRepository {
         AppDatabase db = AppDatabase.getsInstance(context);
 
         //for testing purposes only - to delete before productive use
-        //db.recipeDao().deleteAllRecipes();
-        //db.ingredientDao().deleteAllIngredients();
-        //db.stepDao().deleteAllSteps();
+        db.recipeDao().deleteAllRecipes();
+        db.ingredientDao().deleteAllIngredients();
+        db.stepDao().deleteAllSteps();
 
         RecipeDao recipeDao = db.recipeDao();
         boolean recipesExist = recipeDao.count() != 0;

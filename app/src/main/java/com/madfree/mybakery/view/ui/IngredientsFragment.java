@@ -59,16 +59,6 @@ public class IngredientsFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
     public int getRecipeId() {
         return recipeId;
     }

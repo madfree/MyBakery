@@ -2,6 +2,7 @@ package com.madfree.mybakery.service.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -17,21 +18,27 @@ public class Step {
 
     @PrimaryKey(autoGenerate = true)
     private Integer stepId;
+
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("shortDescription")
     @Expose
     private String shortDescription;
+
     @SerializedName("description")
     @Expose
     private String description;
+
     @SerializedName("videoURL")
     @Expose
     private String videoURL;
+
     @SerializedName("thumbnailURL")
     @Expose
     private String thumbnailURL;
+
     @SerializedName("recipeId")
     private Integer recipeId;
 

@@ -35,4 +35,6 @@ public class DetailActivity extends AppCompatActivity {
                 .add(R.id.steps_frame, stepsFragment)
                 .commit();
     }
+
+
 }

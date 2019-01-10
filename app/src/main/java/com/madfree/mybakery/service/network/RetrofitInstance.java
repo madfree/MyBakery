@@ -84,9 +84,9 @@ public class RetrofitInstance {
                         int stepId = stepList.get(k).getId();
                         String stepShortDesc = stepList.get(k).getShortDescription();
                         String stepDesc = stepList.get(k).getDescription();
-                        String stepThumbNailUrl = stepList.get(k).getThumbnailURL();
                         String stepVideoUrl = stepList.get(k).getVideoURL();
-                        Step step = new Step(stepId, stepShortDesc, stepDesc, stepThumbNailUrl, stepVideoUrl, recipeId);
+                        String stepThumbNailUrl = stepList.get(k).getThumbnailURL();
+                        Step step = new Step(stepId, stepShortDesc, stepDesc, stepVideoUrl, stepThumbNailUrl, recipeId);
                         stepDao.insertStep(step);
                         Log.d(LOG_TAG, "Inserted step: " + stepShortDesc);
                     }
