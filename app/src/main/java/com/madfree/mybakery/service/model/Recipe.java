@@ -33,9 +33,14 @@ public class Recipe {
     @SerializedName("servings")
     @Expose
     private Integer servings;
+
     @SerializedName("image")
     @Expose
     private String image;
+
+    @SerializedName("favorite")
+    @Expose
+    private Boolean favorite;
 
     public Integer getId() {
         return id;
@@ -83,6 +88,14 @@ public class Recipe {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
     }
 
     public Recipe(Integer id, String name) {

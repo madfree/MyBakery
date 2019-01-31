@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyBakery</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_view_text">No data available</string>
+    <string name="favorite_recipe">favorite_recipe</string>
 </resources>

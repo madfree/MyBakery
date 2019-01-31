@@ -22,6 +22,18 @@ public interface RecipeDao {
     @Query("SELECT count(*) FROM Recipe")
     int count();
 
+    @Query("SELECT * FROM Recipe WHERE id=:recipeId")
+    Recipe loadRecipe(int recipeId);
+
+    @Query("UPDATE Recipe SET favorite=:isFavorite WHERE id=:recipeId ")
+    void setFavorite(boolean isFavorite, int recipeId);
+
+    @Query("SELECT * FROM Recipe WHERE favorite=1")
+    int getFavorite();
+
+    @Query("UPDATE Recipe SET favorite=0")
+    void removeFavorite();
+
     @Insert
     void insertRecipe(Recipe recipe);
 
