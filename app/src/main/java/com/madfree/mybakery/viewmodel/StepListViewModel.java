@@ -9,7 +9,9 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.madfree.mybakery.service.data.AppDatabase;
+import com.madfree.mybakery.service.data.AppExecutors;
 import com.madfree.mybakery.service.model.Step;
+import com.madfree.mybakery.service.repository.Repository;
 
 import java.util.List;
 
@@ -27,8 +29,13 @@ public class StepListViewModel extends AndroidViewModel implements ViewModelProv
         this.mApplication = application;
         this.mRecipeId = recipeId;
         Log.d(LOG_TAG, "Received recipeId " + recipeId);
-        AppDatabase db = AppDatabase.getsInstance(application);
-        stepListObservable = db.stepDao().loadStepsForRecipe(recipeId);
+        AppExecutors executors = AppExecutors.getInstance();
+        AppDatabase database = AppDatabase.getsInstance(application);
+        Repository repository = Repository.getInstance(executors, database);
+        stepListObservable = repository.loadStepsForRecipe(recipeId);
+
+//        AppDatabase db = AppDatabase.getsInstance(application);
+//        stepListObservable = db.stepDao().loadStepsForRecipe(recipeId);
     }
 
     public LiveData<List<Step>> getStepListObservable() {

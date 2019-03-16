@@ -28,6 +28,9 @@ public interface RecipeDao {
     @Query("UPDATE Recipe SET favorite=:isFavorite WHERE id=:recipeId ")
     void setFavorite(boolean isFavorite, int recipeId);
 
+    @Query("SELECT favorite FROM Recipe WHERE id=:recipeId")
+    boolean isFavorite(int recipeId);
+
     @Query("SELECT * FROM Recipe WHERE favorite=1")
     int getFavorite();
 
@@ -36,14 +39,4 @@ public interface RecipeDao {
 
     @Insert
     void insertRecipe(Recipe recipe);
-
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateRecipe(Recipe recipe);
-
-    @Delete
-    void deleteRecipe(Recipe recipe);
-
-    @Query("DELETE FROM Recipe")
-    void deleteAllRecipes();
-
 }

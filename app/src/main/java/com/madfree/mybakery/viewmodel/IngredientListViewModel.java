@@ -9,7 +9,9 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.madfree.mybakery.service.data.AppDatabase;
+import com.madfree.mybakery.service.data.AppExecutors;
 import com.madfree.mybakery.service.model.Ingredient;
+import com.madfree.mybakery.service.repository.Repository;
 
 import java.util.List;
 
@@ -27,8 +29,12 @@ public class IngredientListViewModel extends AndroidViewModel implements ViewMod
         this.mApplication = application;
         this.mRecipeId = recipeId;
         Log.d(LOG_TAG, "Received recipeId " + recipeId);
-        AppDatabase db = AppDatabase.getsInstance(application);
-        ingredientListObservable = db.ingredientDao().loadIngredientsForRecipe(recipeId);
+        AppExecutors executors = AppExecutors.getInstance();
+        AppDatabase database = AppDatabase.getsInstance(application);
+        Repository repository = Repository.getInstance(executors, database);
+        ingredientListObservable = repository.loadIngredientsForRecipe(recipeId);
+//        AppDatabase db = AppDatabase.getsInstance(application);
+//        ingredientListObservable = db.ingredientDao().loadIngredientsForRecipe(recipeId);
     }
 
     public LiveData<List<Ingredient>> getIngredientListObservable() {

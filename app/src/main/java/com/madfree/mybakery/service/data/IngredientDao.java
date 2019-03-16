@@ -25,19 +25,6 @@ public interface IngredientDao {
     @Query("SELECT * FROM Ingredient WHERE recipeId=:recipeId")
     List<Ingredient> loadIngredientsForWidget(int recipeId);
 
-    //@Query("SELECT count(*) FROM NetIngredient WHERE recipeId=:recipeId")
-    //int getIngredientCountForRecipe(int recipeId);
-
     @Insert
     void insertIngredient(Ingredient ingredient);
-
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateRecipe(Ingredient ingredient);
-
-    @Delete
-    void deleteRecipe(Ingredient ingredient);
-
-    @Query("DELETE FROM Ingredient")
-    void deleteAllIngredients();
-
 }

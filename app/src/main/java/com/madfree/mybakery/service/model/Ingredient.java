@@ -53,16 +53,8 @@ public class Ingredient {
         return quantity;
     }
 
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
     public String getMeasure() {
         return measure;
-    }
-
-    public void setMeasure(String measure) {
-        this.measure = measure;
     }
 
     public String getIngredient() {

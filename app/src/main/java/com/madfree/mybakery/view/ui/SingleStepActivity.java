@@ -19,11 +19,13 @@ public class SingleStepActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_step);
 
         Intent intent = getIntent();
-        int stepUID = intent.getIntExtra("stepUID", 0);
-        Log.d(LOG_TAG, "This is the stepUID from DetailActivity: " + stepUID);
+        int recipeId = intent.getIntExtra("recipeId", 0);
+        int stepId = intent.getIntExtra("stepId", 0);
+
+        Log.d(LOG_TAG, "This is the recipeId from DetailActivity: " + recipeId + " and the stepId: " + stepId);
 
         SingleStepFragment singleStepFragment = new SingleStepFragment();
-            singleStepFragment.setStepId(stepUID);
+            singleStepFragment.setRecipeAndStepId(recipeId, stepId);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
